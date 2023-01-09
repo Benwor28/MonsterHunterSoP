@@ -1,6 +1,7 @@
 // Setting up generic values
 let titleText = "The monster name (Type): title";
 let descText = "Description lives here";
+let theFont = "Cabin"
 let bg = new Image();
 let img = new Image();
 let bgSource = "Monster Images/Border.png";
@@ -8,8 +9,8 @@ let imgSource = "Monster Images/greatSword.webp";
 let themeButton = { x: 65, y: 510, width: 65, height: 40 };
 let roarButton = { x: 130, y: 510, width: 65, height: 40 };
 let introButton = { x: 65, y: 510, width: 470, height: 40 };
-let smashButton = { x: 30, y: 130, width: 50, height: 200 };
-let passButton = { x: 520, y: 130, width: 50, height: 200 };
+let smashButton = document.querySelector("#smashBTN");
+let passButton = document.querySelector("#passBTN");
 let backButton = { x: 460, y: 510, width: 75, height: 40 };
 let themeAudio = new Audio("Monster Theme/B/button-3.mp3");
 let roarAudio = new Audio("Monster Theme/B/button-3.mp3");
@@ -33,8 +34,17 @@ let introTextL2 = "Hello there fellow hunter. As you may be aware, some hunters 
     " Unlike Tinder, there is a back button to undo a choice or to slowly go back to previous choice." +
     " There is a counter at the bottom of the test saying how many monsters are smashed, left, and passed. Colons seperate these values." +
     " It is recommended to lower the volume before starting the test, some monsters are loud. NOW BEGIN!";
-
+    smashButton.addEventListener('click', () => {
+        smashCount++;
+        globalUpdate();
+        console.log("ckicj")
+      });
 // Setting up class for each smash or pass section
+function globalUpdate(){
+    currMon = monsters[monsterIndex]
+    document.querySelector("#header2IGuess").innerHTML=currMon.name + " (" + currMon.type + "): " + currMon.title;
+    document.querySelector("#theIMAGE").src = 'Monster Images/' + currMon.name[0] + '/' + currMon.name + '.webp';
+}
 class Monster {
     constructor(name, type, title, desc, theme, roar) {
         this.name = name; // name of monster
